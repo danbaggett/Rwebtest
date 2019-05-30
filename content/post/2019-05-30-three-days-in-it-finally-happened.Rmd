@@ -1,0 +1,8 @@
+---
+title: Three Days In - It Finally Happened
+author: Bern
+date: '2019-05-30'
+slug: three-days-in-it-finally-happened
+categories: []
+tags: []
+---
