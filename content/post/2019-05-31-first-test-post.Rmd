@@ -1,5 +1,5 @@
 ---
-title: First Test Post
+title: The Investigation Begins
 author: Bern
 date: '2019-05-31'
 slug: first-test-post
@@ -17,5 +17,11 @@ image:
   preview_only: no
 projects: []
 ---
-###This is only to see how this site will publish markdown. 
+###A crime was committed this morning. This is all we know.  
 ![](/post/2019-05-31-first-test-post_files/IMG_5946.JPG)
+
+Think of it this way. 
+```{r}
+head(mtcars)
+```
+
