@@ -1,5 +1,5 @@
 ---
-title: Will This Work?
+title: Who Dropped The Glass? 
 author: admin
 date: '2019-05-31'
 slug: will-this-work
@@ -9,7 +9,7 @@ categories:
 tags:
   - Academic
   - Formatting
-subtitle: 'This is in the subtitle part.'
+subtitle: "It's more complicated than you think."
 summary: 'A quick summary.'
 authors: []
 lastmod: '2019-05-31T13:04:31-04:00'
@@ -20,5 +20,94 @@ image:
   preview_only: no
 projects: []
 draft: true
+reading_time: true  # Show estimated reading time?
+share: true  # Show social sharing links?
+profile: true  # Show author profile?
+comments: true  # Show comments?
 ---
-So let's try now. 
+####This is an investigation into who dropped the glass this morning, why they did it, and how we can punish them. Also, I am learning Rmarkdown.  
+
+![Our best detective is on the case thankfully.](/post/2019-05-31-will-this-work_files/bern.jpg){width=80% height=80%}
+
+#####If the CHEENO REPORT has taught us absolutely anything, it is that you cannot trust anyone or anything. 
+
+------------------------------------------------------------
+
+
+
+
+```{r library load, include = FALSE, results=FALSE}
+#You put your libraries at the top to make sure the chunks below do not throw errors. I could hide all of this with the echo turned off. 
+library(nasaweather)
+library(tidyverse)
+library(ggvis)
+```
+
+
+It took awhile, but I got this plot to finally appear and I think it tells us **alot** about this morning if you *really* think about it. 
+```{r first plot}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+
+I put *Bern* in italics because he is fancy and because he is **Innocent!** 
+I put **Watch** in bold because he is a bold guy. 
+I put [Rcub](jaguars.com) with this link becuase he is technological and likes the Jags. 
+I put `Bern runs on R` in code because he is also full of techmology. 
+
+####Who are the main suspects in the dropped glass case? I will make a bullet list. 
+* Bern
+* **Simon**
+* Watch
+* Gery
+
+####Now let's put the suspects in order of who is the most likely culprit. 
+1. Simon
+2. Gary
+3. Watch \(If he did it, it was likely by mistake.)\
+4. Bern \(Even the investigators need to be investigated.)\
+
+***
+
+#####Now the following information might be too much for you to handle so be careful.
+
+![](https://i.imgur.com/csjNIYI.mp4)
+
+##**I think Simon is murdering the planet!**
+
+The mean of all mpg listed in mtcars is `r mean(mtcars$mpg)` and that was a calculation only BERN could make. 
+
+Now, check out what Simon drives:
+```{r kable chunk, echo = FALSE}
+knitr::kable(
+  mtcars[1:3, 1:2])
+```
+
+###This is truly disgusting! He is killing the planet!
+
+***
+Well, I think that about solves everything. Simon is murdering the planet and he continues to break your glasses. 
+
+![He is the worst](/post/2019-05-31-will-this-work_files/Screen Shot 2019-05-31 at 4.05.13 PM.png){width=50% height=50%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
