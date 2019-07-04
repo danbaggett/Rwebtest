@@ -9,7 +9,7 @@ image:
   caption: ""
   focal_point: ""
 projects: []
-subtitle: Learn how to blog in Academic using Jupyter notebooks
+subtitle: Am I Changing This?
 summary: Learn how to blog in Academic using Jupyter notebooks
 tags: []
 title: Display Jupyter Notebooks with Academic
