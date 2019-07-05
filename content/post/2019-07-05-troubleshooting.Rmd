@@ -16,12 +16,12 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-draft: true
+draft: false
 ---
 I am trying to see what is going wrong with blogdown. 
 
 ```{r}
 library(tidyverse)
-library(blogdown)
+library(bl3ogdown)
 ```
 
