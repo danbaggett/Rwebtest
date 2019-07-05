@@ -1,0 +1,27 @@
+---
+title: Troubleshooting
+author: Daniel Baggett
+date: '2019-07-05'
+slug: whatgoeswrong
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-07-05T13:26:44-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: true
+---
+I am trying to see what is going wrong with blogdown. 
+
+```{r}
+library(tidyverse)
+library(blogdown)
+```
+
