@@ -1,6 +1,6 @@
 ---
-title: "Taking The Bible Literally"
-author: "Daniel Baggett"
+title: Taking The Bible Literally
+author: Daniel Baggett
 date: '2019-07-04'
 categories: Bible
 draft: yes
@@ -20,6 +20,7 @@ authors: []
 
 ```{r library chunk, echo=FALSE, include=FALSE}
 library(tidyverse)
+library(blogdown)
 ```
 
 I normally begin my American History Survey courses by asking students to give me a one sentence rundown of a particular era in History. The responses are a great way for me to quickly gauge if the material is sinking in. 
@@ -45,9 +46,7 @@ A. The Bible is the actual word of God and is to be taken literally, **word for 
 B. The Bible is the inspired word of God **but not everything in it should be taken literally, word for word**.
 C. The Bible is an ancient book of fables, legends, history, and moral precepts recorded by men.
 
-```{r}
-serve_site()
-```
+
 
 
 
