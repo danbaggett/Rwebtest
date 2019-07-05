@@ -1,28 +1,41 @@
 ---
-title: Troubleshooting
-author: Daniel Baggett
+title: "Troubleshooting"
+author: "Daniel Baggett"
 date: '2019-07-05'
-slug: whatgoeswrong
-categories:
-  - R
-tags: []
-subtitle: ''
-summary: ''
-authors: []
-lastmod: '2019-07-05T13:26:44-04:00'
+categories: R
+draft: no
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
+lastmod: '2019-07-05T13:26:44-04:00'
 projects: []
-draft: false
+slug: whatgoeswrong
+subtitle: ''
+summary: ''
+tags: []
+authors: []
 ---
+```{r, echo = FALSE, include = FALSE}
+library(tidyverse)
+library(blogdown)
+library(knitr)
+```
+
+I did something in the last blog post that made the whole thing not work. 
+
+```{r}
+library(babynames)
+```
 
 
 ```{r}
-library(tidyverse)
-library(blogdown)
+babynames %>% filter(name == "Annika")
 ```
 
-Will this work. 
+
+
+
+
+

@@ -1,0 +1,13 @@
+---
+title: Another Troubleshooting Adventure
+author: Daniel Baggett
+date: '2019-07-05'
+lastmod: '2019-07-05T15:44:38-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+---
+
+Will this fail to render?

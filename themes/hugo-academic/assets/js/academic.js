@@ -23,9 +23,10 @@
    */
   function scrollToAnchor(target) {
     // If `target` is undefined or HashChangeEvent object, set it to window's hash.
-    target = (typeof target === 'undefined' || typeof target === 'object') ? window.location.hash : target;
-    // Escape colons from IDs, such as those found in Markdown footnote links.
-    target = target.replace(/:/g, '\\:');
+    // Decode the hash as browsers can encode non-ASCII characters (e.g. Chinese symbols).
+    target = (typeof target === 'undefined' || typeof target === 'object') ? decodeURIComponent(window.location.hash) : target;
+    // Escape special chars from IDs, such as colons found in Markdown footnote links.
+    target = '#' + $.escapeSelector(target.substring(1));  // Previously, `target = target.replace(/:/g, '\\:');`
 
     // If target element exists, scroll to it taking into account fixed navigation bar offset.
     if($(target).length) {
@@ -35,6 +36,8 @@
       }, 600, function () {
         $('body').removeClass('scrolling');
       });
+    }else{
+      console.warn('Cannot scroll to '+target+'. ID not found!');
     }
   }
 
@@ -46,6 +49,13 @@
       data._config.offset = navbar_offset;
       $body.data('bs.scrollspy', data);
       $body.scrollspy('refresh');
+    }
+  }
+
+  function removeQueryParamsFromUrl() {
+    if (window.history.replaceState) {
+      let urlWithoutSearchParams = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
+      window.history.replaceState({path:urlWithoutSearchParams}, '', urlWithoutSearchParams);
     }
   }
 
@@ -280,7 +290,7 @@
   function printLatestRelease(selector, repo) {
     $.getJSON('https://api.github.com/repos/' + repo + '/tags').done(function (json) {
       let release = json[0];
-      $(selector).append(release.name);
+      $(selector).append(' '+release.name);
     }).fail(function( jqxhr, textStatus, error ) {
       let err = textStatus + ", " + error;
       console.log( "Request Failed: " + err );
@@ -293,9 +303,27 @@
 
   function toggleSearchDialog() {
     if ($('body').hasClass('searching')) {
+      // Clear search query and hide search modal.
       $('[id=search-query]').blur();
-      $('body').removeClass('searching');
+      $('body').removeClass('searching compensate-for-scrollbar');
+
+      // Remove search query params from URL as user has finished searching.
+      removeQueryParamsFromUrl();
+
+      // Prevent fixed positioned elements (e.g. navbar) moving due to scrollbars.
+      $('#fancybox-style-noscroll').remove();
     } else {
+      // Prevent fixed positioned elements (e.g. navbar) moving due to scrollbars.
+      if ( !$('#fancybox-style-noscroll').length && document.body.scrollHeight > window.innerHeight ) {
+        $('head').append(
+          '<style id="fancybox-style-noscroll">.compensate-for-scrollbar{margin-right:' +
+          (window.innerWidth - document.documentElement.clientWidth) +
+          'px;}</style>'
+        );
+        $('body').addClass('compensate-for-scrollbar');
+      }
+
+      // Show search modal.
       $('body').addClass('searching');
       $('.search-results').css({opacity: 0, visibility: 'visible'}).animate({opacity: 1}, 200);
       $('#search-query').focus();
@@ -357,6 +385,13 @@
    * --------------------------------------------------------------------------- */
 
   $(document).ready(function() {
+    // Fix Hugo's auto-generated Table of Contents.
+    //   Must be performed prior to initializing ScrollSpy.
+    $('#TableOfContents > ul > li > ul').unwrap().unwrap();
+    $('#TableOfContents').addClass('nav flex-column');
+    $('#TableOfContents li').addClass('nav-item');
+    $('#TableOfContents li a').addClass('nav-link');
+
     // Set dark mode if user chose it.
     let default_mode = 0;
     if ($('body').hasClass('dark')) {
@@ -513,12 +548,10 @@
     // Initialise Google Maps if necessary.
     initMap();
 
-    // Fix Hugo's inbuilt Table of Contents.
-    $('#TableOfContents > ul > li > ul').unwrap().unwrap();
-
-    // Print latest Academic version if necessary.
-    if ($('#academic-release').length > 0)
-      printLatestRelease('#academic-release', $('#academic-release').data('repo'));
+    // Print latest version of GitHub projects.
+    let githubReleaseSelector = '.js-github-release';
+    if ($(githubReleaseSelector).length > 0)
+      printLatestRelease(githubReleaseSelector, $(githubReleaseSelector).data('repo'));
 
     // On search icon click toggle search dialog.
     $('.js-search').click(function(e) {
